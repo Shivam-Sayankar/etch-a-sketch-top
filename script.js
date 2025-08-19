@@ -1,28 +1,34 @@
 const container = document.querySelector('.container');
+const promptButton = document.querySelector('#init-prompt')
 
-const n = 16;
 let rows = [];
 
-for (let i = 0; i < n; i++) {
-    const row = document.createElement('div')
-    row.classList.add('row-div')
-    container.appendChild(row)
-    rows.push(row)
-}
+promptButton.addEventListener('click', () => {
 
-rows.forEach((row) => {
+    const n = prompt("Number of squares per side:", 16);
+
+    container.replaceChildren() // delete children
 
     for (let i = 0; i < n; i++) {
-        const pixel = document.createElement('div')
-        pixel.classList.add('pixel')
-        row.appendChild(pixel);
+        const row = document.createElement('div')
+        row.classList.add('row-div')
+        container.appendChild(row)
+        rows.push(row)
     }
-})
 
-const pixels = document.querySelectorAll('.pixel')
+    rows.forEach((row) => {
+        for (let i = 0; i < n; i++) {
+            const pixel = document.createElement('div')
+            pixel.classList.add('pixel')
+            row.appendChild(pixel);
+        }
+    })
 
-pixels.forEach((box) => {
-    box.addEventListener('mouseover', () => {
-        box.setAttribute('style', 'background-color: blue')
+    let pixels = document.querySelectorAll('.pixel')
+
+    pixels.forEach((box) => {
+        box.addEventListener('mouseover', () => {
+            box.setAttribute('style', 'background-color: blue')
+        })
     })
 })
