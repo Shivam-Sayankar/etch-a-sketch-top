@@ -19,3 +19,10 @@ rows.forEach((row) => {
     }
 })
 
+const pixels = document.querySelectorAll('.pixel')
+
+pixels.forEach((box) => {
+    box.addEventListener('mouseover', () => {
+        box.setAttribute('style', 'background-color: blue')
+    })
+})
