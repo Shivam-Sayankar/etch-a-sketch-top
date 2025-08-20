@@ -42,7 +42,7 @@ promptButton.addEventListener('click', () => {
 
     pixels.forEach((box) => {
         box.addEventListener('mouseenter', () => {
-            box.setAttribute('style', 'background-color: blue')
+            box.style.backgroundColor = 'blue'
         })
     })
 
@@ -53,8 +53,8 @@ randomColorsButton.addEventListener('click', () => {
     document.querySelectorAll('.pixel').forEach((pixel) => {
 
         pixel.addEventListener('mouseenter', () => {
-            const color = getRandomColors()
-            pixel.setAttribute('style', `background-color: #${color}`)
+            const color = getRandomColors();
+            box.style.backgroundColor = color
         })
 
     })
