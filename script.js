@@ -1,11 +1,12 @@
 const container = document.querySelector('.container');
-const promptButton = document.querySelector('#init-prompt')
+const gridSizeButton = document.querySelector('#grid-size-btn')
 const randomColorsButton = document.querySelector('#randomize-btn')
+const darkenButton = document.querySelector('#darken-btn')
 
 let rows = [];
 
 function getRandomColors() {
-    let colorCode = "";
+    let colorCode = "#";
     const chars = "0123456789ABCDEF";
 
     for (let i = 0; i < 6; i++) {
@@ -17,7 +18,7 @@ function getRandomColors() {
 }
 
 
-promptButton.addEventListener('click', () => {
+gridSizeButton.addEventListener('click', () => {
 
     const n = prompt("Number of squares per side:", 16);
 
@@ -48,15 +49,22 @@ promptButton.addEventListener('click', () => {
 
 })
 
+
 randomColorsButton.addEventListener('click', () => {
-
     document.querySelectorAll('.pixel').forEach((pixel) => {
-
         pixel.addEventListener('mouseenter', () => {
             const color = getRandomColors();
-            box.style.backgroundColor = color
+            pixel.style.backgroundColor = color
         })
-
     })
+})
 
+
+darkenButton.addEventListener('click', () => {
+    document.querySelectorAll('.pixel').forEach((pixel) => {
+        pixel.addEventListener('mouseenter', () => {
+            if (pixel.style.opacity === "") pixel.style.opacity = 1;
+            if (pixel.style.opacity > 0) pixel.style.opacity -= 0.1
+        })
+    })
 })
