@@ -1,7 +1,11 @@
-const container = document.querySelector('.container');
+const sketchPad = document.querySelector('.sketch-pad');
 const gridSizeButton = document.querySelector('#grid-size-btn')
+const gridSizeRange = document.querySelector('#grid-size-range')
 const randomColorsButton = document.querySelector('#randomize-btn')
 const darkenButton = document.querySelector('#darken-btn')
+const colorPicker = document.querySelector('#color-picker')
+const gridSizeSpan = document.querySelector('#grid-size-span')
+const clearButton = document.querySelector('#clear-btn')
 
 let rows = [];
 
@@ -18,16 +22,14 @@ function getRandomColors() {
 }
 
 
-gridSizeButton.addEventListener('click', () => {
+function generateGrid(n) {
 
-    const n = prompt("Number of squares per side:", 16);
-
-    container.replaceChildren() // delete children
+    sketchPad.replaceChildren() // delete previous children
 
     for (let i = 0; i < n; i++) {
         const row = document.createElement('div')
         row.classList.add('row-div')
-        container.appendChild(row)
+        sketchPad.appendChild(row)
         rows.push(row)
     }
 
@@ -39,32 +41,61 @@ gridSizeButton.addEventListener('click', () => {
         }
     })
 
+    applyColorOnEvent('mouseenter', colorPicker.value);
+}
+
+function applyColorOnEvent(trigger, color) {
+
     let pixels = document.querySelectorAll('.pixel')
-
-    pixels.forEach((box) => {
-        box.addEventListener('mouseenter', () => {
-            box.style.backgroundColor = 'blue'
+    pixels.forEach((pixel) => {
+        pixel.addEventListener(trigger, () => {
+            pixel.style.backgroundColor = color;
         })
     })
 
-})
+}
 
 
-randomColorsButton.addEventListener('click', () => {
-    document.querySelectorAll('.pixel').forEach((pixel) => {
-        pixel.addEventListener('mouseenter', () => {
-            const color = getRandomColors();
-            pixel.style.backgroundColor = color
-        })
-    })
-})
-
-
-darkenButton.addEventListener('click', () => {
+function progressiveDarkening() {
     document.querySelectorAll('.pixel').forEach((pixel) => {
         pixel.addEventListener('mouseenter', () => {
             if (pixel.style.opacity === "") pixel.style.opacity = 1;
             if (pixel.style.opacity > 0) pixel.style.opacity -= 0.1
         })
     })
+}
+
+
+function randomColorBrush() {
+    document.querySelectorAll('.pixel').forEach((pixel) => {
+        pixel.addEventListener('mouseenter', () => {
+            const color = getRandomColors();
+            pixel.style.backgroundColor = color
+        })
+    })
+}
+
+
+function clear() {
+    let pixels = document.querySelectorAll('.pixel')
+    pixels.forEach((pixel) => {
+        pixel.style.backgroundColor = 'white';
+        pixel.style.opacity = 1;
+    })
+}
+
+gridSizeRange.addEventListener('click', (e) => {
+    const num = parseInt(e.target.value);
+    generateGrid(num);
+    gridSizeSpan.textContent = `${num}x${num}`
 })
+
+randomColorsButton.addEventListener('click', () => randomColorBrush())
+darkenButton.addEventListener('click', () => progressiveDarkening())
+clearButton.addEventListener('click', () => clear())
+colorPicker.addEventListener('change', (e) => {
+    const currentColor = e.target.value;
+    applyColorOnEvent('mouseenter', currentColor)
+});
+
+generateGrid(gridSizeRange.value);
