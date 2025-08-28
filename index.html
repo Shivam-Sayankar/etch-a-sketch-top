@@ -4,50 +4,72 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch A Sketch - TOP</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <header>
-        Etch-A-Sketch
-    </header>
+    <header>Etch-A-Sketch</header>
     <main>
        <div class="container">
 
             <div class="options-container">
 
-                <div class="options-heading">Grid size</div>
-                <div class="options-area">
-                    <input type="range" name="grid-size-range" id="grid-size-range" min=2 max=100 value=16>
-                    <span id="grid-size-span">16x16</span>
-                </div>
-
-                <div class="options-heading">Customisation</div>
-                <div class="options-area">
-
-                    <div class="single-option-container">
-                        <label for="color-picker">Pick Brush color: </label>
-                        <input type="color" name="" id="color-picker">
-                        <button id="clear-btn">clear canvas</button>
-                    </div>
-
-                    <div class="single-option-container">
-                        <input type="checkbox" name="randomize-checkbox" id="randomize-checkbox">
-                        <label for="randomize-checkbox">Get Random Colors</label>
-                    </div>
-
-                    <div class="single-option-container">
-                        <input type="checkbox" name="darken-checkbox" id="darken-checkbox">
-                        <label for="darken-checkbox">Progresive Darkening</label>
+                <div class="sub-menu">
+                    <div class="options-heading">Canvas size</div>
+                    <div id="grid-size-options" class="centered-options bordered-container">
+                        <input type="range" name="grid-size-range" id="grid-size-range" min=2 max=100 value=16>
+                        <span id="grid-size-span">16x16</span>
                     </div>
                 </div>
+
+                <div class="sub-menu">
+                    <div class="options-heading">Customisation</div>
+                    <div class="options-area">
+
+                        <div class="single-option-container bordered-container centered-options">
+                            <label for="color-picker">Brush color: </label>
+                            <input type="color" name="" id="color-picker" value="#baabda">
+                            <button id="clear-btn">Clear canvas</button>
+                        </div>
+
+                        <div class="single-option-container">
+                            <input type="checkbox" name="randomize-checkbox" id="randomize-checkbox">
+                            <label for="randomize-checkbox">Get Random Colors</label>
+                        </div>
+
+                        <div class="single-option-container">
+                            <input type="checkbox" name="darken-checkbox" id="darken-checkbox">
+                            <label for="darken-checkbox">Progresive Darkening</label>
+                        </div>
+
+                        <div class="single-option-container">
+                            <input type="checkbox" name="" id="grid-checkbox" checked>
+                            <label for="grid-checkbox">Grid</label>
+                        </div>
+
+                        <div class="single-option-container bordered-container centered-options">
+                            <label for="">Color when:</label>
+                            <input type="radio" name="brush-trigger" id="" value="hover">
+                            <label for="">hovered</label>
+                            <input type="radio" name="brush-trigger" id="">
+                            <label for="">clicked</label>
+                        </div>
+                        
+                    </div>
+                </div>
+
             </div>
 
             <div class="sketch-pad"></div>
        </div>
     </main>
     <footer>
-        &copy; Shivam Sayankar
+       <a href="https://www.github.com/Shivam-Sayankar" target="_blank"> &copy; Shivam Sayankar</a>
     </footer>
 
     <script src="script.js" defer></script>

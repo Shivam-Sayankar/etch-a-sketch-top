@@ -1,35 +1,156 @@
 body {
-  margin: none;
-  padding: none;
-  background-color: #212121;
+  margin: 0;
+  padding: 0;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: #6e7da2;
+  color: #fff9f9;
+  /* box-sizing: content-box; */
+  font-family: "Space Grotesk", sans-serif;
+}
+
+header {
+  height: 50px;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  height: 100vh;
-  width: 100vw;
+  font-size: 60px;
+  font-weight: 700;
+  margin: 50px 50px 40px 50px;
+}
+
+main {
+  flex: auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .container {
-  width: 800px;
-  height: 800px;
-  /* background-color: #380081; */
   display: flex;
-  gap: 2px;
+  flex-wrap: wrap;
+  gap: 25px;
+  justify-content: center;
+}
+
+.centered-options {
+  justify-content: center;
+}
+
+#grid-size-range {
+  flex: auto;
+}
+
+#grid-size-options {
+  display: flex;
+  justify-content: space-around;
+  gap: 16px;
+  padding: 16px 20px;
+}
+
+.bordered-container {
+  border-top: #212121 solid 1px;
+  border-bottom: #212121 solid 1px;
+}
+
+.options-container {
+  display: flex;
   flex-direction: column;
-  padding: 5px;
-  border: #380081 5px solid;
+  flex: auto;
+  max-width: 610px;
+  background-color: #d6e5fa;
+  color: #212121;
+  box-shadow: 8px 8px #baabda;
+  border: solid 1px #212121;
+  font-size: 20px;
+  font-weight: 400;
+}
+
+.sub-menu {
+  display: flex;
+  flex-direction: column;
+}
+
+.options-heading {
+  background-color: #d77fa1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 8px;
+  font-size: 25px;
+  font-weight: 500;
+}
+
+.options-area {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+}
+
+.single-option-container {
+  flex: auto;
+  padding: 12px 20px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: auto;
+  padding: 15px;
+  margin-top: 25px;
+  font-size: 20px;
+}
+
+.sketch-pad {
+  width: 600px;
+  height: 600px;
+  display: flex;
+  flex-direction: column;
+  flex-direction: column;
+  padding: 1px;
+  border: #d77fa1 5px solid;
+  box-shadow: 8px 8px #baabda;
+  background-color: black;
 }
 
 .row-div {
   flex: auto;
-  /* background-color: black; */
   display: flex;
-  gap: 2px;
 }
 
 .pixel {
-  border-radius: 2px;
-  background-color: #380081;
+  background-color: white;
+  border: #212121 0.1px solid;
   flex: auto;
+}
+
+#color-picker {
+  border: 0;
+  width: 32px;
+  height: 32px;
+  padding: 0;
+  margin: 5px;
+}
+
+#clear-btn {
+  font-family: inherit;
+  font-size: 20px;
+  font-weight: 400;
+  margin: none;
+  border: #212121 1px solid;
+  background-color: #6e7da2;
+  color: white;
+  padding: 7px 14px;
+}
+
+a {
+  text-decoration: none;
+  color: #d6e5fa;
 }
