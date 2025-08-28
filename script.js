@@ -5,6 +5,9 @@ const gridSizeSpan = document.querySelector('#grid-size-span')
 const clearButton = document.querySelector('#clear-btn')
 const randomColorsCheckbox = document.querySelector('#randomize-checkbox')
 const darkenCheckbox = document.querySelector('#darken-checkbox')
+const gridCheckbox = document.querySelector('#grid-checkbox')
+
+const mainBackgroundColor = "#212121"
 
 function getRandomColors() {
     let colorCode = "#";
@@ -111,13 +114,22 @@ darkenCheckbox.addEventListener('change', (e) => {
     }
 })
 
+gridCheckbox.addEventListener('change', (e) => {
+    const pixels = document.querySelectorAll('.pixel')
+    if (e.target.checked) {
+        pixels.forEach(pixel => pixel.style.border = `${mainBackgroundColor} 0.1px solid`)
+    } else {
+        pixels.forEach(pixel => pixel.style.border = 0)
+    }
+})
+
 colorPicker.addEventListener('change', (e) => {
     const currentColor = e.target.value;
     applyColorOnEvent('mouseenter', currentColor);
     randomColorsCheckbox.checked = false;
 });
 
-gridSizeRange.addEventListener('change', (e) => {
+gridSizeRange.addEventListener('input', (e) => {
     const num = parseInt(e.target.value);
     generateGrid(num);
     gridSizeSpan.textContent = `${num}x${num}`
