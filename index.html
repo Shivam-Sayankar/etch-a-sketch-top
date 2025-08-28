@@ -23,7 +23,7 @@
                     <div class="options-heading">Canvas size</div>
                     <div id="grid-size-options" class="centered-options bordered-container">
                         <input type="range" name="grid-size-range" id="grid-size-range" min=2 max=100 value=16>
-                        <span id="grid-size-span">16x16</span>
+                        <span id="grid-size-span">16 x 16</span>
                     </div>
                 </div>
 
@@ -53,11 +53,13 @@
                         </div>
 
                         <div class="single-option-container bordered-container centered-options">
-                            <label for="">Color when:</label>
-                            <input type="radio" name="brush-trigger" id="" value="hover">
-                            <label for="">hovered</label>
-                            <input type="radio" name="brush-trigger" id="">
-                            <label for="">clicked</label>
+                            <label for="brush-trigger">Color when:</label>
+
+                            <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-hover" value="mouseenter" checked>
+                            <label for="brush-trigger-hover">Hovered</label>
+
+                            <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-click" value="click">
+                            <label for="brush-trigger-click">Clicked</label>
                         </div>
                         
                     </div>
