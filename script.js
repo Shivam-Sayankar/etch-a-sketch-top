@@ -12,6 +12,9 @@ const gridCheckbox = document.querySelector('#grid-checkbox')
 
 const brushTriggerRadioButtons = document.querySelectorAll('.brush-trigger-radio')
 
+const randomOpacitiesCheckbox = document.querySelector("#random-opacities")
+const generateButton = document.querySelector('#generate-btn')
+
 const gridColor = "#212121"
 let brushTriggerEvent = "mouseenter"
 
@@ -161,5 +164,33 @@ brushTriggerRadioButtons.forEach(radio => {
 })
 
 clearButton.addEventListener('click', clear)
+
+generateButton.addEventListener('click', (e) => {
+
+    clear()
+
+    const generateFromBrushColor = document.querySelector('#generate-from-brush-color')
+    let color = generateFromBrushColor.checked ? colorPicker.value : "random";
+
+    const randomOpacities = randomOpacitiesCheckbox.checked
+
+    document.querySelectorAll('.pixel').forEach(pixel => {
+        let chance = Math.random();
+
+        if (color !== "random") { // color from brush
+            if (chance < 0.5) pixel.style.backgroundColor = color
+        }
+
+        // if (color === "random") {
+        else {
+            const randomColor = getRandomColors()
+            if (chance < 0.5) pixel.style.backgroundColor = randomColor;
+        }
+
+        if (randomOpacities) {
+            pixel.style.opacity = Math.random();
+        }
+    })
+})
 
 generateGrid(gridSizeRange.value);

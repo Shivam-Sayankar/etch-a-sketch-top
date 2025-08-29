@@ -55,13 +55,49 @@
                         <div class="single-option-container bordered-container centered-options">
                             <label for="brush-trigger">Color when:</label>
 
-                            <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-hover" value="mouseenter" checked>
-                            <label for="brush-trigger-hover">Hovered</label>
-
-                            <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-click" value="click">
-                            <label for="brush-trigger-click">Clicked</label>
+                            <div class="input-group">
+                                <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-hover" value="mouseenter" checked>
+                                <label for="brush-trigger-hover">Hovered</label>
+                            </div>
+                            
+                            <div class="input-group">
+                                <input type="radio" name="brush-trigger" class="brush-trigger-radio" id="brush-trigger-click" value="click">
+                                <label for="brush-trigger-click">Clicked</label>
+                            </div>
+            
                         </div>
                         
+                    </div>
+                </div>
+
+                <div class="sub-menu">
+                    <div class="options-heading">Feeling lazy? Just generate!</div>
+                    <div class="options-area">
+                        <div class="single-option-container bordered-container centered-options">
+                            <label for="">Color: </label>
+                            
+                            <div class="input-group">
+                                <input type="radio" name="generate-art-color" id="generate-from-brush-color" class="generate-random-radio" checked>
+                                <label for="generate-from-brush-color">Brush Color</label>
+                            </div>
+                            
+                            <div class="input-group">
+                                <input type="radio" name="generate-art-color" id="generate-from-random-colors" class="generate-random-radio">
+                                <label for="generate-from-random-colors">Random Colors</label>
+                            </div>
+                            
+                        </div>
+
+                        <div class="single-option-container" id="generate-btn-area">
+
+                            <div class="input-group">
+                                <input type="checkbox" name="" id="random-opacities">
+                                <label for="random-opacities">Random Opacities</label>
+                            </div>
+
+                            <button id="generate-btn">Generate !!</button>
+                            
+                        </div>
                     </div>
                 </div>
 

@@ -65,7 +65,7 @@ main {
   color: #212121;
   box-shadow: 8px 8px #baabda;
   border: solid 1px #212121;
-  font-size: 20px;
+  font-size: 19px;
   font-weight: 400;
 }
 
@@ -139,7 +139,7 @@ footer {
   margin: 5px;
 }
 
-#clear-btn {
+button {
   font-family: inherit;
   font-size: 20px;
   font-weight: 400;
@@ -148,6 +148,11 @@ footer {
   background-color: #6e7da2;
   color: white;
   padding: 7px 14px;
+}
+
+#generate-btn-area {
+  display: flex;
+  justify-content: space-evenly;
 }
 
 a {
