@@ -150,6 +150,14 @@ button {
   padding: 7px 14px;
 }
 
+button:hover {
+  scale: 1.02;
+}
+
+button:active {
+  scale: 1;
+}
+
 #generate-btn-area {
   display: flex;
   justify-content: space-evenly;
