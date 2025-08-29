@@ -6,6 +6,7 @@
 - add default color for the colorpicker ✅
 - add a favicon ✅
 - button to generate random art ✅
+- make the code more efficient, reduce the number of query selectors
 - button to download art
 
 # Options section
