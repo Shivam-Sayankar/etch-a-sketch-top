@@ -12,6 +12,10 @@ const gridCheckbox = document.querySelector('#grid-checkbox')
 
 const brushTriggerRadioButtons = document.querySelectorAll('.brush-trigger-radio')
 
+const generateFromBrushColorRadio = document.querySelector('#generate-from-brush-color')
+const generateFromRandomColorsRadio = document.querySelector('#generate-from-random-colors')
+const generateFromSingleRandomColorRadio = document.querySelector('#generate-from-one-random-color')
+
 const randomOpacitiesCheckbox = document.querySelector("#random-opacities")
 const generateButton = document.querySelector('#generate-btn')
 
@@ -29,6 +33,7 @@ function getRandomColors() {
 
     return colorCode;
 }
+
 
 function generateGrid(n) {
 
@@ -104,6 +109,20 @@ function clear() {
     darkenCheckbox.checked = false;
 }
 
+gridSizeRange.addEventListener('input', (e) => {
+    const num = parseInt(e.target.value);
+    generateGrid(num);
+    gridSizeSpan.textContent = `${num} x ${num}`
+    gridCheckbox.checked = true;
+});
+
+colorPicker.addEventListener('change', (e) => {
+    applyColorOnEvent(brushTriggerEvent);
+    randomColorsCheckbox.checked = false;
+});
+
+clearButton.addEventListener('click', clear)
+
 randomColorsCheckbox.addEventListener('change', (e) => {
     if (e.target.checked) {
         randomColorBrush()
@@ -133,18 +152,6 @@ gridCheckbox.addEventListener('change', (e) => {
     }
 })
 
-colorPicker.addEventListener('change', (e) => {
-    applyColorOnEvent(brushTriggerEvent);
-    randomColorsCheckbox.checked = false;
-});
-
-gridSizeRange.addEventListener('input', (e) => {
-    const num = parseInt(e.target.value);
-    generateGrid(num);
-    gridSizeSpan.textContent = `${num} x ${num}`
-    gridCheckbox.checked = true;
-});
-
 brushTriggerRadioButtons.forEach(radio => {
     radio.addEventListener('change', e => {
         let oldTriggerEvent = brushTriggerEvent;
@@ -163,15 +170,11 @@ brushTriggerRadioButtons.forEach(radio => {
     })
 })
 
-clearButton.addEventListener('click', clear)
-
 generateButton.addEventListener('click', (e) => {
 
     clear()
 
-    const generateFromBrushColor = document.querySelector('#generate-from-brush-color')
-    let color = generateFromBrushColor.checked ? colorPicker.value : "random";
-
+    let color = generateFromBrushColorRadio.checked ? colorPicker.value : "random";
     const randomOpacities = randomOpacitiesCheckbox.checked
 
     document.querySelectorAll('.pixel').forEach(pixel => {
@@ -181,10 +184,17 @@ generateButton.addEventListener('click', (e) => {
             if (chance < 0.5) pixel.style.backgroundColor = color
         }
 
-        // if (color === "random") {
-        else {
-            const randomColor = getRandomColors()
-            if (chance < 0.5) pixel.style.backgroundColor = randomColor;
+        else { // if color === random
+
+            if (generateFromRandomColorsRadio.checked) {
+                const randomColor = getRandomColors()
+                if (chance < 0.5) pixel.style.backgroundColor = randomColor;
+            }
+
+            else if (generateFromSingleRandomColorRadio.checked) {
+                color = getRandomColors() // use this to get a fixed random color for all the pixels
+                if (chance < 0.5) pixel.style.backgroundColor = color;
+            }
         }
 
         if (randomOpacities) {
