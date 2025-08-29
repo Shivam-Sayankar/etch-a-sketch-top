@@ -109,6 +109,38 @@ function clear() {
     darkenCheckbox.checked = false;
 }
 
+function generateRandomArt() {
+    clear()
+
+    let color = generateFromBrushColorRadio.checked ? colorPicker.value : "random";
+    const randomOpacities = randomOpacitiesCheckbox.checked
+
+    document.querySelectorAll('.pixel').forEach(pixel => {
+        let chance = Math.random();
+
+        if (color !== "random") { // color from brush
+            if (chance < 0.5) pixel.style.backgroundColor = color
+        }
+
+        else {
+
+            if (generateFromRandomColorsRadio.checked) {
+                const randomColor = getRandomColors()
+                if (chance < 0.5) pixel.style.backgroundColor = randomColor;
+            }
+
+            else if (generateFromSingleRandomColorRadio.checked) {
+                color = getRandomColors()
+                if (chance < 0.5) pixel.style.backgroundColor = color;
+            }
+        }
+
+        if (randomOpacities) {
+            pixel.style.opacity = Math.random();
+        }
+    })
+}
+
 gridSizeRange.addEventListener('input', (e) => {
     const num = parseInt(e.target.value);
     generateGrid(num);
@@ -170,37 +202,6 @@ brushTriggerRadioButtons.forEach(radio => {
     })
 })
 
-generateButton.addEventListener('click', (e) => {
-
-    clear()
-
-    let color = generateFromBrushColorRadio.checked ? colorPicker.value : "random";
-    const randomOpacities = randomOpacitiesCheckbox.checked
-
-    document.querySelectorAll('.pixel').forEach(pixel => {
-        let chance = Math.random();
-
-        if (color !== "random") { // color from brush
-            if (chance < 0.5) pixel.style.backgroundColor = color
-        }
-
-        else { // if color === random
-
-            if (generateFromRandomColorsRadio.checked) {
-                const randomColor = getRandomColors()
-                if (chance < 0.5) pixel.style.backgroundColor = randomColor;
-            }
-
-            else if (generateFromSingleRandomColorRadio.checked) {
-                color = getRandomColors() // use this to get a fixed random color for all the pixels
-                if (chance < 0.5) pixel.style.backgroundColor = color;
-            }
-        }
-
-        if (randomOpacities) {
-            pixel.style.opacity = Math.random();
-        }
-    })
-})
+generateButton.addEventListener('click', generateRandomArt)
 
 generateGrid(gridSizeRange.value);
